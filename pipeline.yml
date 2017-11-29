@@ -164,7 +164,7 @@ Resources:
           artifacts:
             type: zip
             files:
-              - ./html/index.html
+              - ./public_html/**/*
       TimeoutInMinutes: 10
   Pipeline:
     Type: AWS::CodePipeline::Pipeline
