@@ -1,0 +1,4 @@
+template_path: templates/s3-sites.yaml
+
+parameters:
+    PrimarySiteDomainName: www.rikbrown.co.uk

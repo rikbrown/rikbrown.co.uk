@@ -1,0 +1,7 @@
+template_path: templates/code-pipeline.yaml
+
+parameters:
+    SiteBucketName: !stack_output s3-sites::SiteBucketName
+    GitHubUser: rikbrown
+    GitHubRepo: rikbrown.co.uk
+    GitHubToken: {{ environment_variable.GITHUB_TOKEN }}

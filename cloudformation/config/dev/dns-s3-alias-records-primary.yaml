@@ -1,0 +1,3 @@
+template_path: templates/dns-s3-alias-records.yaml
+parameters:
+  DomainName: !stack_output dns-zone-primary::DomainName

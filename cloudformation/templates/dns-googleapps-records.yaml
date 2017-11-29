@@ -1,0 +1,29 @@
+Parameters:
+  DomainName:
+    Type: String
+  TTL:
+    Type: Number
+    Default: 600
+
+Resources:
+
+  #
+  # MX records
+  #
+  DnsGoogleAppsMxRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: !Ref DomainName
+      HostedZoneName: !Join
+        - ""
+        - [!Ref DomainName, "."]
+      Type: MX
+      TTL: !Ref TTL
+      ResourceRecords:
+        - 1 ASPMX.L.GOOGLE.COM.
+        - 5 ALT1.ASPMX.L.GOOGLE.COM.
+        - 5 ALT2.ASPMX.L.GOOGLE.COM.
+        - 10 ASPMX2.GOOGLEMAIL.COM.
+        - 10 ASPMX3.GOOGLEMAIL.COM.
+        - 10 ASPMX4.GOOGLEMAIL.COM.
+        - 10 ASPMX5.GOOGLEMAIL.COM. 

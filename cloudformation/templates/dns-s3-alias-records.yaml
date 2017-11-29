@@ -1,0 +1,38 @@
+Parameters:
+  DomainName:
+    Type: String
+  S3HostedZoneId:
+    Type: String
+    Default: Z3BJ6K6RIION7M # us-west-2
+  S3DNSName:
+    Type: String
+    Default: s3-website-us-west-2.amazonaws.com
+
+Resources:
+
+  #
+  # A records to map www. and non-www. to the equivalent S3 buckets
+  #
+  DnsS3AliasARecordSets:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneName: !Join
+        - ""
+        - [!Ref DomainName, "."]
+
+      RecordSets:
+        - 
+          Name: !Ref DomainName
+          Type: A
+          AliasTarget:
+            HostedZoneId: !Ref S3HostedZoneId
+            DNSName: !Ref S3DNSName
+        - 
+          Name: !Join
+            - ""
+            - ["www.", !Ref DomainName]
+          Type: A
+          AliasTarget:
+            HostedZoneId: !Ref S3HostedZoneId
+            DNSName: !Ref S3DNSName
+    

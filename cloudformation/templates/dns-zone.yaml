@@ -1,0 +1,18 @@
+Parameters:
+  DomainName:
+    Type: String
+
+Resources:
+  DnsZone:
+    Type: "AWS::Route53::HostedZone"
+    DeletionPolicy: Retain
+    Properties:
+      Name: !Ref DomainName
+      HostedZoneConfig:
+        Comment: !Join
+          - " "
+          - ["Hosted zone for", !Ref DomainName]
+  
+Outputs:
+  DomainName:
+    Value: !Ref DomainName
