@@ -1,0 +1,4 @@
+template_path: templates/s3-site-bucket.yaml
+
+parameters:
+    FullyQualifiedDomainName: www.rikbrown.co.uk

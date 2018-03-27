@@ -1,0 +1,4 @@
+template_path: templates/dns-s3-alias-records.yaml
+parameters:
+  DomainName: rikbrown.co.uk
+  DomainHostedZoneId: !stack_output dns-zone-rikbrown-co-uk::HostedZoneId

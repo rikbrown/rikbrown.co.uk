@@ -12,7 +12,9 @@ Resources:
         Comment: !Join
           - " "
           - ["Hosted zone for", !Ref DomainName]
-  
+
 Outputs:
   DomainName:
     Value: !Ref DomainName
+  HostedZoneId:
+    Value: !Ref DnsZone

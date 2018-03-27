@@ -1,0 +1,23 @@
+Parameters:
+  FullyQualifiedDomainName:
+    Type: String
+    Description: Fully qualified domain name (including www)
+
+Resources:
+  #
+  # main bucket
+  #
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    Properties:
+      AccessControl: PublicRead
+      BucketName: !Ref FullyQualifiedDomainName
+      WebsiteConfiguration:
+        IndexDocument: index.html
+
+Outputs:
+  SiteBucketName:
+    Value: !Ref FullyQualifiedDomainName
+    Description: Bucket for site content
+

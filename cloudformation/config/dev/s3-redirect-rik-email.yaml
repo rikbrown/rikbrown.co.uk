@@ -1,0 +1,5 @@
+template_path: templates/s3-redirect.yaml
+
+parameters:
+    PrimarySiteDomainName: www.rikbrown.co.uk
+    RedirectSiteDomainName: rik.email

@@ -1,6 +1,8 @@
 Parameters:
   DomainName:
     Type: String
+  DomainHostedZoneId:
+    Type: String
   S3HostedZoneId:
     Type: String
     Default: Z3BJ6K6RIION7M # us-west-2
@@ -16,18 +18,16 @@ Resources:
   DnsS3AliasARecordSets:
     Type: AWS::Route53::RecordSetGroup
     Properties:
-      HostedZoneName: !Join
-        - ""
-        - [!Ref DomainName, "."]
+      HostedZoneId: !Ref DomainHostedZoneId
 
       RecordSets:
-        - 
+        -
           Name: !Ref DomainName
           Type: A
           AliasTarget:
             HostedZoneId: !Ref S3HostedZoneId
             DNSName: !Ref S3DNSName
-        - 
+        -
           Name: !Join
             - ""
             - ["www.", !Ref DomainName]
@@ -35,4 +35,4 @@ Resources:
           AliasTarget:
             HostedZoneId: !Ref S3HostedZoneId
             DNSName: !Ref S3DNSName
-    
+
