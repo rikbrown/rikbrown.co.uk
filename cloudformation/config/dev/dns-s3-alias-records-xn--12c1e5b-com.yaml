@@ -1,0 +1,4 @@
+template_path: templates/dns-s3-alias-records.yaml
+parameters:
+  DomainName: xn--12c1e5b.com
+  DomainHostedZoneId: !stack_output dns-zone-xn--12c1e5b-com::HostedZoneId

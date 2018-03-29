@@ -1,0 +1,4 @@
+template_path: templates/dns-googleapps-records.yaml
+parameters:
+  DomainName: xn--12c1e5b.com
+  DomainHostedZoneId: !stack_output dns-zone-xn--12c1e5b-com::HostedZoneId

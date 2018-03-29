@@ -1,0 +1,4 @@
+template_path: templates/dns-zone.yaml
+
+parameters:
+  DomainName: xn--12c1e5b.com

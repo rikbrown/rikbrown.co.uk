@@ -1,0 +1,4 @@
+template_path: templates/dns-googleapps-records.yaml
+parameters:
+  DomainName: rik.today
+  DomainHostedZoneId: !stack_output dns-zone-rik-today::HostedZoneId
