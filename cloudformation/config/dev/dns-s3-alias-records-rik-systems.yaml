@@ -1,0 +1,4 @@
+template_path: templates/dns-s3-alias-records.yaml
+parameters:
+  DomainName: rik.systems
+  DomainHostedZoneId: !stack_output dns-zone-rik-systems::HostedZoneId

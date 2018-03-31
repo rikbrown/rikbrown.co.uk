@@ -12,6 +12,7 @@ Cloudformation for this site (using Sceptre) creates:
     * `rikbrown.co.uk`
     * `rik.codes`
     * `rik.email`
+    * and others
   * **A** records pointing `www.` and root to the S3 buckets
   * **MX** records for Google Apps
 * a code pipeline which automatically updates the static asset S3 bucket when we commit to Github.
