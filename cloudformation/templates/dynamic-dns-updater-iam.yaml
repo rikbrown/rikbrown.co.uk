@@ -1,0 +1,31 @@
+Parameters:
+  HostedZoneId:
+    Type: String
+
+Resources:
+  DynamicDnsUpdaterUser:
+    Type: AWS::IAM::User
+    Properties:
+      Policies:
+      - PolicyName: !Sub ${AWS::StackName}-User
+        PolicyDocument:
+          Statement:
+          - Effect: Allow
+            Action:
+            - route53:ChangeResourceRecordSets
+            - route53:ListResourceRecordSets
+            Resource:
+            - !Sub arn:aws:route53:::hostedzone/${HostedZoneId}
+          Version: '2012-10-17'
+
+  DynamicDnsUpdaterUserAccessKey:
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName:
+        !Ref DynamicDnsUpdaterUser
+
+Outputs:
+  AccessKey:
+   Value: !Ref DynamicDnsUpdaterUserAccessKey
+  SecretKey:
+    Value: !GetAtt DynamicDnsUpdaterUserAccessKey.SecretAccessKey

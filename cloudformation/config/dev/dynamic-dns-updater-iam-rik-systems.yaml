@@ -1,0 +1,5 @@
+template_path: templates/dynamic-dns-updater-iam.yaml
+
+parameters:
+  HostedZoneId: !stack_output dns-zone-rik-systems::HostedZoneId
+
