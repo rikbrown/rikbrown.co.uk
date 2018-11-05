@@ -20,4 +20,6 @@ Outputs:
   SiteBucketName:
     Value: !Ref FullyQualifiedDomainName
     Description: Bucket for site content
+  BucketUrl:
+    Value: !GetAtt [SiteBucket, WebsiteURL]
 

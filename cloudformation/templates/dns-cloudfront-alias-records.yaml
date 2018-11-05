@@ -1,0 +1,44 @@
+Parameters:
+  DomainName:
+    Type: String
+  DomainHostedZoneId:
+    Type: String
+  S3HostedZoneId:
+    Type: String
+    Default: Z3BJ6K6RIION7M # us-west-2
+  CloudfrontEndpoint:
+    Type: String
+
+Resources:
+
+  #
+  # A records to map www. and non-www. to the equivalent S3 buckets
+  #
+  DnsCloudfrontAliasARecordSets:
+    Type: AWS::Route53::RecordSetGroup
+    Properties:
+      HostedZoneId: !Ref DomainHostedZoneId
+
+      RecordSets:
+        -
+          Name: !Ref DomainName
+          Type: A
+          AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2
+            DNSName: !Ref CloudfrontEndpoint
+        -
+          Name: !Join
+            - ""
+            - ["www.", !Ref DomainName]
+          Type: A
+          AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2
+            DNSName: !Ref CloudfrontEndpoint
+        -
+          Name: !Join
+            - ""
+            - ["cloudfront.", !Ref DomainName]
+          Type: A
+          AliasTarget:
+            HostedZoneId: Z2FDTNDATAQYW2
+            DNSName: !Ref CloudfrontEndpoint

@@ -7,6 +7,7 @@ Personal website.
 Cloudformation for this site (using Sceptre) creates:
 
 * a S3 bucket to store the static assets (`public_html/**/*`) and redirect buckets for non-primary domains.
+* a Cloudfront distribution in front of this for SSL
 * DNS
   * the hosted zone for:
     * `rikbrown.co.uk`

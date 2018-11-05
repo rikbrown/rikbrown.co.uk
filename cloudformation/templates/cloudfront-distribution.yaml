@@ -1,0 +1,53 @@
+Parameters:
+  S3BucketUrl:
+    Type: String
+  DomainName:
+    Type: String
+    Description: Origin domain name
+  CertificateArn:
+    Type: String
+
+Resources:
+  SiteCloudfront:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: Cloudfront Distribution pointing to S3 bucket
+        Origins:
+        - DomainName: !Select [2, !Split ["/", !Ref S3BucketUrl]]
+          Id: S3Origin
+          CustomOriginConfig:
+            HTTPPort: '80'
+            HTTPSPort: '443'
+            OriginProtocolPolicy: http-only
+        Enabled: true
+        HttpVersion: 'http2'
+        DefaultRootObject: index.html
+        Aliases:
+        - !Ref DomainName
+        - !Join
+            - ""
+            - ["www.", !Ref DomainName]
+        - !Join
+            - ""
+            - ["cloudfront.", !Ref DomainName]
+        DefaultCacheBehavior:
+          AllowedMethods:
+          - GET
+          - HEAD
+          Compress: true
+          TargetOriginId: S3Origin
+          ForwardedValues:
+            QueryString: true
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        PriceClass: PriceClass_All
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+
+Outputs:
+  CloudfrontEndpoint:
+    Value: !GetAtt [SiteCloudfront, DomainName]
+    Description: Endpoint for Cloudfront distribution

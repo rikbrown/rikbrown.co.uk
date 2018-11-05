@@ -1,0 +1,5 @@
+template_path: templates/cloudfront-distribution.yaml
+parameters:
+  DomainName: rikbrown.co.uk
+  S3BucketUrl: !stack_output s3-site-bucket-www-rikbrown-co-uk::BucketUrl
+  CertificateArn: arn:aws:acm:us-east-1:487129032168:certificate/0614e155-5b2b-4c82-a263-19bebf7e0df7 # create manually in us-east-1 region (required for CF)

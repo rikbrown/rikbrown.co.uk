@@ -1,0 +1,5 @@
+template_path: templates/dns-cloudfront-alias-records.yaml
+parameters:
+  DomainName: rikbrown.co.uk
+  DomainHostedZoneId: !stack_output dns-zone-rikbrown-co-uk::HostedZoneId
+  CloudfrontEndpoint: !stack_output cloudfront-distribution-rikbrown-co-uk::CloudfrontEndpoint
